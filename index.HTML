@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Health Explorer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="logo">The Cost of Getting Sick: Global Health Progress and the Price of Care</div>
+        <div class="header-label">By Safia Ulysse</div>
+    </header>
+
+    <main>
+
+        <!-- Write-up for Prototype -->
+        <h3> ### 1. What I have done so far</h3>
+        <p>  So far, I have developed the structure and visual design 
+          of my webpage using HTML, CSS, and D3.js. I have organized 
+          the project around the **AND-BUT-THEREFORE** storytelling 
+          approach to explore global health progress and the financial
+          challenges that still exist. In the first scene, I created 
+          four interactive line charts showing trends in extreme poverty,
+          universal health coverage, life expectancy, and health expenditure,
+          with options to compare regions and income groups. 
+          In the second scene, I developed two animated bar charts showing 
+          catastrophic health spending and further impoverishment caused by 
+          out-of-pocket healthcare payments. I also added interactive legends,
+          coordinated highlighting, and controls that allow users to explore 
+          changes over time.</p>
+
+          <h3>### 2. What will be the most challenging part of my project 
+            to design, and why?</h3>
+          <p>The most challenging part will be designing the third 
+            scene and connecting it clearly to the first two scenes. 
+            I want to explore how different ways of financing healthcare
+            may help explain why improvements in health coverage do not 
+            always lead to financial protection. I also hope to include a 
+            successful country case study where a healthcare reform or policy
+            helped improve outcomes and reduce the financial burden on 
+            households. However, the World Bank dataset does not provide 
+            enough information to fully evaluate the impact of a specific 
+            reform, so I am considering using an external source, such as a 
+            published research study, to present its findings. Another 
+            challenge will be combining these different sources into a clear 
+            and engaging visualization while making sure I do not imply a 
+            causal relationship that the data cannot support.</p>
+
+        <!-- SCENE 1: AND -->
+        <section id="scene1" class="scene">
+
+            <div class="scene-heading">
+                <p class="eyebrow">01 / THE PROGRESS</p>
+
+                <h1>A World Moving Forward</h1>
+
+                <p class="intro">
+                    Over the past two decades, the world has made
+                    remarkable progress. Extreme poverty has declined,
+                    access to essential health services has expanded,
+                    and people are living longer. Yet progress has not 
+                    followed the same path everywhere, and healthcare 
+                    spending represents a very different share of national 
+                    economies across regions and income groups.
+                    But has progress been equal everywhere?
+                </p>
+            </div>
+
+            <!-- REGION / INCOME SWITCH -->
+            <div class="controls">
+
+                <div class="view-buttons">
+                    <button id="region-btn" class="active">
+                        By Region
+                    </button>
+
+                    <button id="income-btn">
+                        By Income Level
+                    </button>
+                </div>
+
+                <p class="control-note">
+                    Compare trends across groups.
+                    The World remains visible as a reference.
+                </p>
+
+            </div>
+
+            <!-- LEGEND: FILLED BY JAVASCRIPT -->
+            <div id="legend"></div>
+
+            <!-- FOUR CHARTS -->
+            <div class="charts-grid">
+
+                <div class="chart-card">
+                    <div class="chart-heading">
+                        <p class="chart-number">01 / POVERTY</p>
+                        <h2>Extreme Poverty</h2>
+                        <p>
+                            Population living below $3.00 a day
+                            (2021 PPP)
+                        </p>
+                    </div>
+
+                    <div id="poverty-chart" class="chart"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-heading">
+                        <p class="chart-number">02 / HEALTH COVERAGE</p>
+                        <h2>Essential Health Services</h2>
+                        <p>
+                            Universal Health Coverage service
+                            coverage index (0-100)
+                        </p>
+                    </div>
+
+                    <div id="uhc-chart" class="chart"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-heading">
+                        <p class="chart-number">03 / LIFE EXPECTANCY</p>
+                        <h2>Living Longer</h2>
+                        <p>
+                            Life expectancy at birth (years)
+                        </p>
+                    </div>
+
+                    <div id="life-chart" class="chart"></div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-heading">
+                        <p class="chart-number">04 / HEALTH EXPENDITURE</p>
+                        <h2>Healthcare Expenditure</h2>
+                        <p>
+                            Current health expenditure (% of GDP)
+                        </p>
+                    </div>
+
+                    <div id="expenditure-chart" class="chart"></div>
+                </div>
+
+            </div>
+
+            <!-- TRANSITION TO SCENE 2 -->
+            <div class="story-transition">
+                <p class="eyebrow">BUT THERE IS A QUESTION...</p>
+
+                <h2>
+                    Does better healthcare mean
+                    people are financially protected?
+                </h2>
+
+                <p>
+                    Progress in healthcare access does not
+                    necessarily tell us what happens when
+                    families have to pay for care.
+                </p>
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+            SCENE 2: BUT — FINANCIAL HARDSHIP
+            ========================================= -->
+
+        <section id="scene2" class="scene">
+
+            <!-- SCENE INTRODUCTION -->
+
+            <div class="scene-heading">
+
+                <p class="eyebrow">02 / THE HIDDEN COST OF CARE</p>
+
+                <h1>Better Access, But at What Cost?</h1>
+
+                <p class="intro">
+                    Access to essential health services has expanded,
+                    but paying for healthcare can still place a heavy
+                    financial burden on households.
+
+                    For some people, out-of-pocket payments consume
+                    more than a quarter of household resources.
+                    For those already living in poverty, these
+                    payments can push them even further below
+                    the poverty line.
+
+                    How much financial hardship remains today, 
+                    and how has it changed since 2000?
+                </p>
+
+            </div>
+
+            <!-- REGION / INCOME SWITCH -->
+
+            <div class="controls">
+
+                <div class="view-buttons">
+
+                    <button id="scene2-region-btn" class="active">
+                        By Region
+                    </button>
+
+                    <button id="scene2-income-btn">
+                        By Income Level
+                    </button>
+
+                </div>
+
+                <!-- CURRENT YEAR: CENTER -->
+                <div class="scene2-year-display">
+
+                    <span id="scene2-current-year">2000</span>
+
+                </div>
+
+                <!-- Play and Year selector -->
+                <div class="time-controls">
+
+                    <button id="scene2-play-btn" type="button">
+                        ▶ Play
+                    </button>
+
+                    <label for="scene2-year">Year:</label>
+
+                    <!-- JavaScript will add the available years -->
+                    <select id="scene2-year"></select>
+
+                </div>
+
+            </div>
+
+
+            <!-- CLICKABLE LEGEND -->
+            <!-- D3 creates the legend items here. -->
+
+            <div id="scene2-legend"></div>
+
+
+            <!-- TWO ANIMATED BAR CHARTS -->
+
+            <div class="charts-grid">
+
+                <!-- CHART 1: CATASTROPHIC SPENDING -->
+
+                <div class="chart-card">
+
+                    <div class="chart-heading">
+
+                        <p class="chart-number">
+                            05 / CATASTROPHIC SPENDING
+                        </p>
+
+                        <h2>When Healthcare Costs Too Much</h2>
+
+                        <p>
+                            Population spending more than 25% of
+                            household income or consumption on
+                            out-of-pocket healthcare (%)
+                        </p>
+
+                    </div>
+
+                    <div id="catastrophic-chart" class="chart"></div>
+
+                </div>
+
+                <!-- CHART 2: FURTHER IMPOVERISHMENT -->
+
+                <div class="chart-card">
+
+                    <div class="chart-heading">
+
+                        <p class="chart-number">
+                            06 / FURTHER IMPOVERISHMENT
+                        </p>
+
+                        <h2>When Healthcare Deepens Poverty</h2>
+
+                        <p>
+                            Population pushed further below the
+                            $3.65/day poverty line (2017 PPP)
+                            by out-of-pocket healthcare payments (%)
+                        </p>
+
+                    </div>
+
+                    <div id="impoverishment-chart" class="chart"></div>
+
+                </div>
+
+            </div>
+
+            <!-- EXPLANATORY NOTE -->
+
+            <p class="control-note scene2-instruction">
+            Pale bars show 2000 values. Strong-colored bars
+            show the selected year. Changes are expressed
+            in percentage points (pp). Each chart uses
+            its own fixed percentage scale.
+            </p>
+
+            <!-- TRANSITION TO SCENE 3 -->
+
+            <div class="story-transition">
+
+                <p class="eyebrow">THEREFORE, WE MUST ASK...</p>
+
+                <h2>
+                    If healthcare access is improving,
+                    why are households still financially vulnerable?
+                </h2>
+
+                <p>
+                    Understanding financial hardship requires looking
+                    beyond healthcare coverage to how care is financed,
+                    and how much households must pay directly.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+    </main>
+
+    <footer>
+        <p>
+            Data: World Bank |
+            Creator: Safia Ulysse
+        </p>
+    </footer>
+
+    <!-- Load JavaScript file and connect it to the HTML page -->
+    <script type="module" src="script.js"></script>
+
+</body>
+</html>

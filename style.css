@@ -1,0 +1,525 @@
+
+/* ==============================
+   GLOBAL STYLES
+================================= */
+/* Define reusable colors for the entire website. */
+:root {
+    --navy: #182A36;
+    --teal: #087D78;
+    --orange: #E49356;
+    --blue: #608A9C;
+    --purple: #8B73AE;
+    --cream: #F8F7F3;
+    --white: #FFFFFF;
+    --gray: #66747D;
+    --border: #E5E9E7;
+}
+
+/* The asterisk (*) selects EVERY HTML element. */
+
+* {
+    margin: 0; /* Remove the browser's default outside spacing. */
+    padding: 0; /* Remove the browser's default inside spacing. */
+    box-sizing: border-box;  /* Include padding and borders inside an element's width. */
+}
+
+body {
+    background-color: var(--cream);
+    color: var(--navy);
+    font-family: "DM Sans", sans-serif;
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   HEADER
+================================= */
+
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 22px 6%;
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.logo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.header-label {
+    font-size: 12px;
+    color: #C5D3D7;
+}
+
+
+/* ==============================
+   SCENE 1 - INTRODUCTION
+================================= */
+
+.scene {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 80px 5%;
+}
+
+.scene-heading {
+    max-width: 780px;
+    margin-bottom: 45px;
+}
+
+.eyebrow {
+    color: var(--teal);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+h1, h2 {
+    font-family: "Playfair Display", serif;
+}
+
+h1 {
+    font-size: clamp(42px, 5vw, 66px);
+    line-height: 1.15;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+}
+
+.intro {
+    font-size: 17px;
+    color: var(--gray);
+    max-width: 720px;
+    line-height: 1.9;
+}
+
+
+/* ==============================
+   REGION / INCOME CONTROLS
+================================= */
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.view-buttons {
+    display: flex;
+    gap: 8px;
+    background-color: #E9EEEC;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.view-buttons button {
+    border: none;
+    background: transparent;
+
+    padding: 11px 20px;
+    border-radius: 7px;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    color: var(--gray);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.view-buttons button:hover {
+    color: var(--navy);
+}
+
+.view-buttons button.active {
+    background-color: var(--navy);
+    color: var(--white);
+}
+
+.control-note {
+    font-size: 12px;
+    color: var(--gray);
+}
+
+
+/* ==============================
+   LEGEND
+================================= */
+
+#legend,
+#scene2-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 16px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9E7;
+    border-radius: 14px;
+    margin: 20px auto 30px;
+    
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.legend-color {
+    width: 22px;
+    height: 4px;
+    border-radius: 3px;
+}
+
+/* Show the group that was clicked. */
+#legend .legend-item.selected {
+    background-color: #E9EEEC;
+    border-color: var(--teal);
+    color: var(--navy);
+    font-weight: 600;
+}
+
+/* Fade the other groups when hovering or selecting. */
+#legend .legend-item.dimmed {
+    opacity: 0.35;
+}
+
+/* Make it clear that legend items are clickable. */
+#legend .legend-item {
+    cursor: pointer;
+}
+
+/* ==============================
+   FOUR CHART CARDS
+================================= */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.chart-card {
+    background-color: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+
+    box-shadow: 0 5px 25px rgba(24, 42, 54, 0.035);
+}
+
+.chart-number {
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.chart-heading h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.chart-heading > p:last-child {
+    color: var(--gray);
+    font-size: 13px;
+}
+
+.chart {
+    width: 100%;
+    min-height: 280px;
+    margin-top: 25px;
+}
+
+.chart svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* ==============================
+   D3 CHART STYLES
+   (Used later in script.js)
+================================= */
+
+.axis text {
+    fill: var(--gray);
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+}
+
+.axis path,
+.axis line {
+    stroke: #C7D0D1;
+}
+
+.grid line {
+    stroke: #E5E9E7;
+}
+
+.grid path {
+    display: none;
+}
+
+.line {
+    fill: none;
+    stroke-width: 2.5px;
+}
+
+.world-line {
+    stroke: var(--navy);
+    stroke-width: 3px;
+    stroke-dasharray: 6 4;
+}
+
+
+/* ==============================
+   STORY TRANSITION
+================================= */
+
+.story-transition {
+    text-align: center;
+    max-width: 800px;
+
+    margin: 100px auto 30px;
+    padding: 60px 30px;
+
+    border-top: 1px solid var(--border);
+}
+
+.story-transition h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.story-transition > p:last-child {
+    font-size: 16px;
+    color: var(--gray);
+}
+
+
+/* ==============================
+   FOOTER
+================================= */
+
+footer {
+    background-color: var(--navy);
+    color: #C5D3D7;
+    text-align: center;
+    padding: 25px;
+    font-size: 12px;
+}
+
+
+/* ==============================
+   RESPONSIVE DESIGN
+================================= */
+
+/* change the layout depending on the screen size. */
+
+@media (max-width: 850px) {
+
+     /* Display the charts in one column
+       instead of two on smaller screens. */
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+    /* Reduce the padding around the scene. */
+    .scene {
+        padding: 55px 5%;
+    }
+    /* Reduce the padding inside each chart card. */
+    .chart-card {
+        padding: 22px;
+    }
+     
+    .site-header {
+        gap: 15px;
+    }
+    /* Hide the small header label to save space. */
+    .header-label {
+        display: none;
+    }
+
+}
+
+
+
+
+/* ==============================
+   SCENE 2 — ANIMATED BAR COMPARISON
+================================= */
+
+/* Arrange Play, Year label and dropdown. */
+.time-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Play / Pause button. */
+#scene2-play-btn {
+    background-color: var(--teal);
+    color: var(--white);
+    border: none;
+    border-radius: 7px;
+    padding: 11px 20px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#scene2-play-btn:hover {
+    background-color: var(--navy);
+}
+
+/* Year selector. */
+.time-controls label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray);
+}
+
+#scene2-year {
+    background-color: var(--white);
+    color: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 10px 14px;
+    font-family: "DM Sans", sans-serif;
+    cursor: pointer;
+}
+
+/*  Large current year 
+.scene2-year-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 4px 20px;
+    background-color: var(--teal);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+} */
+
+/* Make the changing year prominent. */
+#scene2-current-year {
+    font-family: "Playfair Display", serif;
+    font-size: 80px;
+    line-height: 0.8;
+    color: var(--teal);
+    text-align: center;
+}
+
+/* Legend entries are buttons so they can be clicked. */
+#legend .legend-item,
+#scene2-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 2px 4px;
+    margin: 0;
+
+    background-color: #F5F5F5;
+    border: 1px solid #888888;
+    border-radius: 3px;
+
+    color: var(--gray);
+    font-family: "DM Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.2;
+
+    cursor: pointer;
+}
+
+/* Show which group is selected. */
+#scene2-legend .legend-item.selected {
+    background-color: #F0F3F1;
+    border-color: var(--border);
+    color: var(--navy);
+    font-weight: 700;
+}
+
+/* Dim other legend entries when a group is selected. */
+#scene2-legend .legend-item.dimmed {
+    opacity: 0.35;
+}
+
+/* Reduce Scene 2 legend height and outside spacing. */
+#scene2-legend {
+    padding: 10px 14px;
+    margin: 6px auto 10px;
+}
+
+/* Scene 2 SVG bars and labels. */
+#scene2 .scene2-bar-group {
+    cursor: pointer;
+}
+
+#scene2 .scene2-bar-group text {
+    font-family: "DM Sans", sans-serif;
+}
+
+/* Tooltip appears above the chart when hovering. */
+#scene2 .chart {
+    position: relative;
+}
+
+.scene2-tooltip {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    padding: 10px 13px;
+    border-radius: 8px;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 12px;
+    line-height: 1.7;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Keep controls readable on smaller screens. */
+@media (max-width: 850px) {
+
+    .time-controls {
+        flex-wrap: wrap;
+    }
+
+    .scene2-year-display {
+        padding: 18px;
+    }
+
+    .scene2-baseline-label > p:last-child {
+        font-size: 14px;
+    }
+
+}
+
+/* No gap below the controls. */
+#scene2 .controls {
+    margin-bottom: 0;
+}
+
+
